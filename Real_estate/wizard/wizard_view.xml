@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="estate_wizard_form" model="ir.ui.view">
+            <field name="name">estate.property.wizard.form</field>
+            <field name="model">estate.property.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="buyer_id" />
+                        </group>
+                        <footer>
+                            <button type="object" class="btn-primary" name="action_assign_buyer" string="Assign Buyer"/>
+                            <button string="Cancel" class="btn-secondary" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="estate_make_offer_wizard_form" model="ir.ui.view">
+            <field name="name">estate.property.wizard.form</field>
+            <field name="model">estate.property.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <!-- <field name="property_offer_ids" /> -->
+                            <!-- <field name="name" /> -->
+                            <field name="price" />
+                            <field name="partner_id" />
+                            <field name="status" />
+                            <!-- <field name="property_offer_ids">
+                                <tree>
+                                    <field name="price"/>
+                                    <field name="partner_id"/>
+                                    <field name="status" readonly="1"/>
+                                    <button name="action_accepted" type="object" class="oe_stat_button" icon="fa-check" />
+                                    <button name="action_rejected" type="object" class="oe_stat_button" icon="fa-close" />
+                                </tree>
+                            </field> -->
+                        </group>
+                        <footer>
+                            <button type="object" class="btn-primary" name="action_make_offer" string="Assign Buyer"/>
+                            <button string="Cancel" class="btn-secondary" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_buyer_wizard" model="ir.actions.act_window">
+            <field name="name">Assign Buyer</field>
+            <field name="res_model">estate.property.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="estate_wizard_form"/>
+            <field name="binding_model_id" ref="Real_estate.model_real_estate"/>
+            <field name="binding_view_types">list</field>
+        </record>
+
+        <record id="action_make_offer_wizard" model="ir.actions.act_window">
+            <field name="name">Make Offer</field>
+            <field name="res_model">estate.property.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="estate_make_offer_wizard_form"/>
+            <field name="binding_model_id" ref="Real_estate.model_real_estate"/>
+            <field name="binding_view_types">list</field>
+        </record>
+    </data>
+</odoo>
