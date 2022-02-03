@@ -21,9 +21,6 @@ class Estate_offer(models.Model):
     def action_accepted(self):
         for record in self:
             record.status = "accepted"
-            #set the buyer and selling prize
-            # record.partner_id.selling_price = record.selling_price
-            # record.property_id.buyer_id= record.partner_id
 
     def action_rejected(self):
         for record in self:

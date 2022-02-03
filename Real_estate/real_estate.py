@@ -22,7 +22,7 @@ models = xmlrpc.client.ServerProxy('http://localhost:8069/xmlrpc/2/object')
 to_confrim_ids = models.execute_kw(db, uid, password, 'real.estate', 'search', [[('name', '=', 'Swojas')]])
 print ("\n\nto_confrim_id ::: ", to_confrim_ids)
 
-## Give Action to Record
+## Call Method
 # result = models.execute_kw(db, uid, password, 'real.estate', 'button_sold', [to_confrim_ids])
 
 ## Search_Read Record
