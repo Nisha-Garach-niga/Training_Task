@@ -1,0 +1,20 @@
+{
+    'name' : 'Real Estate',
+    'version' : '1.0',
+    'summary': 'Real Estate',
+    'depends' : ['mail','website'],
+    'data' : [
+        'security/estate_security.xml',
+        'security/ir.model.access.csv',
+        'wizard/wizard_view.xml',
+        'data/estate_data.xml',
+        'views/estate_menu.xml',
+        'views/estate_view.xml',
+        'views/estate_property_view.xml',
+        'views/real_estate_templates.xml',
+    ],
+    'installable': True,
+    'application' : True,
+    'auto_install': False,
+    'license': 'LGPL-3',
+}

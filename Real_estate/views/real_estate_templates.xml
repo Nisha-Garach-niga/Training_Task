@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hello_world" name="Hello World">
+        <h4>
+            <strong>Hello World</strong>
+        </h4>
+    </template>
+
+    <template id="property_list">
+        <div>
+            <t t-out="info"/>
+        </div>
+        <div class="table">
+            <table t-attf-style="#{'border: 1px solid;'}">
+                <thead>
+                    <th>Sequence</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Excepted Price</th>
+                    <th>State</th>
+                </thead>
+                <tbody>
+                    <t t-set="sequence" t-value="0"/>
+                    <t t-foreach="properties" t-as="property">
+                        <t t-set="sequence" t-value="sequence + 1"/>
+                        <!-- <tr t-att-class="sequence % 2 == 0 and 'o_even' or ''"> -->
+                        <!-- <tr t-attf-style="font-weight: bold;#{sequence % 2 != 0 and 'background: darkturquoise;' or ''}"> -->
+                        <tr t-attf-style="#{sequence % 2 != 0 and 'background: darkturquoise;' or ''}">
+                            <td>
+                                <t t-out="sequence" />
+                            </td>
+                            <td>
+                                <t t-out="property.name" />
+                            </td>
+                            <td>
+                                <t t-if="property.description" t-out="property.description" />
+                                <t t-else="">No Description Available</t>
+                            </td>
+                            <td>
+                                <t t-out="property.excepted_price"/>
+                            </td>
+                            <td>
+                                <!-- <span t-field="property.state"/> -->
+                                <!-- <t t-if="property.state == 'open'" t-out="property.state" /> -->
+                                <span t-if="property.state == 'open'" t-field="property.state"></span>
+                                <t t-elif="property.state =='sold'">Sold Out</t>
+                                <t t-else="">Cancelled</t>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="estate_property">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <t t-att-style="text-align: center;">
+                        <h2>Hello <t t-out="user.name"/>
+                        </h2>
+                        <br />
+
+                        <t t-call="Real_estate.property_list">
+                            <t t-set="info">ESTATE PROPERTIES</t>
+                        </t>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

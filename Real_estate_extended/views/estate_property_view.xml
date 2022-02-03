@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="real_estate_form_inherited" model="ir.ui.view">
+            <field name="name">real estate tree</field>
+            <field name="model">real.estate</field>
+            <field name="inherit_id" ref="Real_estate.estate_data_form"/>
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//page[@name='info']" position="attributes">
+                    <attribute name="string">Course Sessions</attribute>
+                </xpath> -->
+                <!-- <xpath expr="//page[@name='info']/group/field[@name='session_ids']" position="attributes">
+                    <attribute name="nolabel">1</attribute>
+                </xpath> -->
+                <xpath expr="//page[@name='offers']" position="after">
+                    <page name="internal_details" string="Internal Details">
+                        <!-- <field name="name"/> -->
+                        <group>
+                            <field name="lease_name"/>
+                        </group>
+                    </page>
+                </xpath>
+                <!-- <field name="name" position="after">
+                    <field name="internal_details"/>
+                </field> -->
+            </field>
+        </record>
+
+        <record id="crash_course_tree" model="ir.ui.view">
+            <field name="name">crash.course.tree</field>
+            <field name="model">lease.property</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="lease_duration"/>
+                    <field name="start_date" />
+                    <field name="end_date" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="crash_course_form" model="ir.ui.view">
+            <field name="name">crash.course.form</field>
+            <field name="model">lease.property</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="property_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="sessions" string="Sessions">
+                                <group>
+                                    <field name="lease_duration"/>
+                                    <field name="start_date" />
+                                    <field name="end_date" />
+                                </group>
+                            </page>
+                            <page name="additional_details" string="Addtional Details">
+                                <group>
+                                    <field name="lease_rent_monthly" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="lease_property_tag_tree" model="ir.ui.view">
+            <field name="name">Lease Property Tag Tree</field>
+            <field name="model">lease.property.tag</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="lease_tag"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="lease_property_tag_form" model="ir.ui.view">
+            <field name="name">Lease Property Tag Form</field>
+            <field name="model">lease.property.tag</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="lease_tag"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>
