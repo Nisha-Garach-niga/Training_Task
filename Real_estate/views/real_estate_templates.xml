@@ -71,4 +71,72 @@
         </t>
     </template>
 
+
+    <template id="property_template" name="Property Template">
+        <t t-call="website.layout">
+            <div class="container">
+                <h2 class="text-center">Hello World</h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <th>Sequence</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Excepted Price</th>
+                            <th>State</th>
+                        </thead>
+                        <tbody>
+                            <t t-set="sequence" t-value="0"/>
+                            <t t-foreach="properties" t-as="property">
+                                <t t-set="sequence" t-value="sequence + 1"/>
+                                <tr t-attf-style="#{sequence % 2 != 0 and 'background: darkturquoise;' or ''}">
+                                    <td>
+                                        <t t-out="sequence" />
+                                    </td>
+                                    <td>
+                                        <a t-attf-href="/property/#{property.id}">
+                                            <t t-out="property.name" />
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <t t-if="property.description" t-out="property.description" />
+                                        <t t-else="">No Description Available</t>
+                                    </td>
+                                    <td>
+                                        <t t-out="property.excepted_price"/>
+                                    </td>
+                                    <td>
+                                        <span t-if="property.state == 'open'" t-field="property.state"></span>
+                                        <t t-elif="property.state =='sold'">Sold Out</t>
+                                        <t t-else="">Cancelled</t>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="property_detail" name="Property Detail">
+        <div t-call="website.layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <div t-attf-style="padding-top: 50%; background-image: url(/web/image/real.estate/#{property.id}); background-size: cover; background-position:center"/>
+                        <div>
+                            <div>State of the Course</div>
+                            <div t-field="property.state"/>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="text-center font-weight-bold">
+                            <span t-field="property.name"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
 </odoo>

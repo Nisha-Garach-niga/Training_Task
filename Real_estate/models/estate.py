@@ -24,6 +24,10 @@ class real_estate(models.Model):
         if self.env.context.get('is_my_property'):
             return self.env.user.name + '\'s Property'
 
+    _inherit = [
+        'image.mixin',
+    ]
+
     _name = "real.estate"
     _description = "Real Estate"
     name = fields.Char(name="Title")
@@ -57,7 +61,8 @@ class real_estate(models.Model):
     property_offer_ids_count = fields.Integer(compute="action_offer_ids_show")
     # partner_name = fields.Many2one(
     #     'res.users', string='Company', default=lambda self: self.env.user, readonly=True)
-    partner_name = fields.Many2one('res.partner', string='Company', default=lambda self: self.env.user.partner_id.id, readonly=True)
+    partner_name = fields.Many2one('res.partner', string='Company',
+                                   default=lambda self: self.env.user.partner_id.id, readonly=True)
     state = fields.Selection(string='Status', required=True, readonly=True, copy=False, tracking=True, selection=[
         ('open', 'New'),
         ('sold', 'Sold'),
@@ -65,7 +70,6 @@ class real_estate(models.Model):
     ], default='open')
     buyer_id = fields.Many2one("res.partner", string="Buyer")
     seller_id = fields.Many2one("res.users", string="Salesman")
-
 
     @api.onchange('garden')
     def _onchange_property_id(self):
@@ -108,13 +112,15 @@ class real_estate(models.Model):
 
     def action_offer_ids_show(self):
         self.ensure_one()
-        action = self.env["ir.actions.actions"]._for_xml_id("Real_estate.Offers_action")
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "Real_estate.Offers_action")
         action['domain'] = [('id', 'in', self.property_offer_ids.ids)]
-        
+
         for lead in self:
             lead.property_offer_ids_count = len(lead.property_offer_ids)
-        
+
         return action
+
 
 class real_estate_property_type(models.Model):
     _name = "estate.property.type"
