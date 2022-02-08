@@ -1,1 +1,1 @@
-from . import estate,property
+from . import estate

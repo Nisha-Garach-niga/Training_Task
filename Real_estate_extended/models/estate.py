@@ -9,7 +9,7 @@ class Lease_Property(models.Model):
 
 class Lease_Property_(models.Model):
     _name = 'lease.property.tag'
-    _inherit = 'real.estate'
+    _inherit = 'property.tags'
 
     lease_tag = fields.Many2one('property.tags')
 

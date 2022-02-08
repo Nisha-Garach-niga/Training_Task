@@ -124,13 +124,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-4">
-                        <div t-attf-style="padding-top: 50%; background-image: url(/web/image/real.estate/#{property.id}/image_1024); background-size: cover; background-position:center"/>
+                        <div t-attf-style="padding-top: 100%; background-image: url(/web/image/real.estate/#{property.id}/image_1024); background-size: cover; background-position:center"/>
                         <div>
                             <div>State of the Course</div>
                             <div t-field="property.state"/>
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col-8 o_property_details">
                         <div class="text-center font-weight-bold">
                             <span t-field="property.name"/>
                         </div>
@@ -139,4 +139,19 @@
             </div>
         </div>
     </template>
+
+    <template id="property_static" name="Property">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="text-center font-weight-bold">Hello World</div>
+            </div>
+        </t>
+    </template>
+
+    <template id="property_description" name="Property Description" inherit_id="Real_estate.property_detail" customize_show="True">
+        <xpath expr="//div[contains(@class, 'o_property_details')]" position="inside">
+            <div t-field="property.description"></div>
+        </xpath>
+    </template>
+
 </odoo>

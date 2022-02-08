@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <template id="report_offer">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Offer Details</h2>
+                        <p>This offer's price is <span t-field="o.price"/>
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_property">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Estate Properties</h2>
+
+                        <div class="">
+                            <div class="mt32 mb32 pr-3">
+                                <strong>Register Name:</strong>
+                                <p t-field="o.name"/>
+                            </div>
+                            <!-- <div>
+                                <strong>Partner Name:</strong>
+                                <p t-field="o.partner_name"/>
+                            </div>
+                            <div>
+                                <strong>Property Tag Name:</strong>
+                                <p t-field="o.proprty_tags"/>
+                            </div>
+                            <div>
+                                <strong>Property Type Name:</strong>
+                                <p t-field="o.property_type_id"/>
+                            </div>
+                            <div>
+                                <strong>Best Offer:</strong>
+                                <p t-field="o.best_offer"/>
+                            </div> -->
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <th>Partner Name</th>
+                                        <th>Property Tag Name</th>
+                                        <th>Property Type Name</th>
+                                        <th>Best Offer</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <p t-field="o.partner_name"/>
+                                            </td>
+                                            <td>
+                                                <p t-field="o.proprty_tags"/>
+                                            </td>
+                                            <td>
+                                                <p t-field="o.property_type_id"/>
+                                            </td>
+                                            <td>
+                                                <p t-field="o.best_offer"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,5 +1,7 @@
+from crypt import methods
 from odoo import http
 from odoo.http import request
+
 
 class RealEstate(http.Controller):
 
@@ -22,17 +24,39 @@ class RealEstate(http.Controller):
         print("properties ::: ", properties)
         return request.render('Real_estate.estate_property', {'user': request.env.user, 'properties': properties})
 
-    @http.route('/property', auth="public", website=True)
-    def property_template_user(self, **kw):
+    @http.route(['/property', '/property/static/<string:is_static>'], auth="user", website=True)
+    def property_template_user(self, is_static=False, **kw):
+        if is_static:
+            return request.render('Real_estate.property_static', {
+                'properties': request.env['real.estate'].sudo().search([], limit=8)
+            })
         return request.render('Real_estate.property_template', {
-            'user': request.env.user, 
+            'user': request.env.user,
             'properties': request.env['real.estate'].sudo().search([], limit=8)
         })
 
     @http.route('/property/<model("real.estate"):property>', auth="public", website=True)
-    def property_details(self,property=False, **kw):
+    def property_details(self, property=False, **kw):
         if property:
             # print("properties ::: ", property)
             return request.render('Real_estate.property_detail', {
                 'property': property
             })
+
+    @http.route('/property/add', auth="public", website=True)
+    def partner_form(self, **post):
+        return request.render("Real_estate.tmp_property_form", {})
+
+    @http.route('/property/form/submit', auth="public", website=True)
+    def property_form_submit(self, **post):
+        partner = request.env['real.estate'].create({
+            'name': post.get('name'),
+            # 'excepted_price': post.get('excepted_price'),
+            'excepted_price': 2,
+            # 'phone': post.get('phone')
+        })
+        print("PRINT :::", post)
+        vals = {
+            'partner': partner,
+        }
+        return request.render("Real_estate.tmp_property_form_success", vals)
