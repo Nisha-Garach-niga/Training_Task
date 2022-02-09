@@ -22,7 +22,7 @@
             </div>
         </t>
     </template>
-    <!-- <template id="tmp_property_form_success" name="Customer Form Successfully Submitted">
+    <template id="tmp_property_form_success" name="Customer Form Successfully Submitted">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container">
@@ -30,9 +30,11 @@
                         <div class="alert alert-success">
                             Customer created successfully.
                         </div>
+                        <!-- <button type="submit" class="btn btn-primary" t-att-href="/property">Home</button> -->
+                        <button><a href="/property">Home</a></button>
                     </div>
                 </div>
             </div>
         </t>
-    </template> -->
+    </template>
 </odoo>

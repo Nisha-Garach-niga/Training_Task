@@ -32,7 +32,8 @@ class RealEstate(http.Controller):
             })
         return request.render('Real_estate.property_template', {
             'user': request.env.user,
-            'properties': request.env['real.estate'].sudo().search([], limit=8)
+            # 'properties': request.env['real.estate'].sudo().search([], limit=8)
+            'properties': request.env['real.estate'].sudo().search([])
         })
 
     @http.route('/property/<model("real.estate"):property>', auth="public", website=True)
@@ -51,9 +52,7 @@ class RealEstate(http.Controller):
     def property_form_submit(self, **post):
         partner = request.env['real.estate'].create({
             'name': post.get('name'),
-            # 'excepted_price': post.get('excepted_price'),
-            'excepted_price': 2,
-            # 'phone': post.get('phone')
+            'excepted_price': post.get('excepted_price'),
         })
         print("PRINT :::", post)
         vals = {
