@@ -15,7 +15,7 @@
         </record> -->
 
         <record id="menu_form" model="website.menu">
-            <field name="name">Create</field>
+            <field name="name">Create Property</field>
             <field name="url">/property/add</field>
             <field name="parent_id" ref="website.main_menu"/>
             <field name="sequence" type="int">22</field>
