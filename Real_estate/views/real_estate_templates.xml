@@ -154,4 +154,10 @@
         </xpath>
     </template>
 
+    <template id="best_offer" name="Property best offer" inherit_id="Real_estate.property_detail" customize_show="True">
+        <xpath expr="//div[contains(@class, 'o_property_details')]" position="inside">
+            <div t-field="property.best_offer"></div>
+        </xpath>
+    </template>
+
 </odoo>
