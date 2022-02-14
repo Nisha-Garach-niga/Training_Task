@@ -1,3 +1,3 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-access_lease_property,access_lease_property,model_lease_property,base.group_user,1,1,1,1
-Real_estate_extended.access_lease_property_tag,access_lease_property_tag,Real_estate_extended.model_lease_property_tag,base.group_user,1,1,1,1
+access_lease_property,access_lease_property,model_lease_property,Real_estate.estate_group_manager,1,1,1,1
+Real_estate_extended.access_lease_property_tag,access_lease_property_tag,Real_estate_extended.model_lease_property_tag,Real_estate.estate_group_manager,1,1,1,1
