@@ -17,6 +17,7 @@
                 <field name="living_area"/>
                 <field name="excepted_price"/>
                 <field name="selling_price"/>
+                <!-- <field name="active"/> -->
                 <field name="state" invisible="1"/>
             </tree>
         </field>
@@ -58,6 +59,7 @@
                     </group>
                     <group>
                         <group>
+                            <field name="active"/>
                             <field name="property_type_id"/>
                             <field name="postcode"/>
                             <field name="date_availablity"/>

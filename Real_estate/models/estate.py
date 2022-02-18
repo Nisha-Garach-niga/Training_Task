@@ -70,6 +70,17 @@ class real_estate(models.Model):
     ], default='open')
     buyer_id = fields.Many2one("res.partner", string="Buyer")
     seller_id = fields.Many2one("res.users", string="Salesman")
+    active = fields.Boolean()
+
+    @api.model
+    def create(self,val):
+        print("Before Values ::: ",val)
+        # print("Self ::: ",self)
+        val['active'] = True
+        print("After Values ::: ",val)
+        rtn = super(real_estate,self).create(val)
+        print("Return ::: ",rtn)
+        return rtn
 
     @api.onchange('garden')
     def _onchange_property_id(self):
